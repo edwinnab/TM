@@ -8,19 +8,14 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, 
 export class NoteCardComponent implements OnInit {
 
 
-  @Input()
-  title!: string;
-  @Input()
-  body!: string;
-  @Input()
-  link!: string;
+  @Input() title!: string;
+  @Input() body!: string;
+  @Input() link!: any;
 
   @Output('delete') deleteEvent: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild('truncator')
-  truncator!: ElementRef<HTMLElement>;
-  @ViewChild('bodyText')
-  bodyText!: ElementRef<HTMLElement>;
+  @ViewChild('truncator') truncator!: ElementRef<HTMLElement>;
+  @ViewChild('bodyText') bodyText!: ElementRef<HTMLElement>;
 
   constructor(private renderer: Renderer2) { }
 

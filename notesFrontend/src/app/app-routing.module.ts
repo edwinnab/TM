@@ -12,7 +12,8 @@ const routes: Routes = [
     { path: '', component: NotesListComponent },
     { path: 'new', component: NotesDetailsComponent },
     { path: ':id', component: NotesDetailsComponent }
-]}]
+  ]}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,5 +1,5 @@
 import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Note } from 'src/app/shared/note/note.model';
 import { NotesService } from 'src/app/shared/notes.service';
 
@@ -87,15 +87,29 @@ export class NotesListComponent implements OnInit {
   filteredNotes: Note[] = new Array<Note>();
 
 
+  @ViewChild('filterInput') filterInputRef!: ElementRef<HTMLInputElement>;
+
+
   constructor(private notesService: NotesService) { }
 
   ngOnInit(): void {
-    this.filteredNotes = this.notes;
+    //retrieve all notes from the service
+    this.notes = this.notesService.getAll();
+    this.filter(' ');
   }
 
   deleteNote(note: Note) {
-    //this.notesService.delete(id);
+    let noteId = this.notesService.getId(note);
+    this.notesService.delete(noteId);
+    this.filter(this.filterInputRef.nativeElement.value);
   }
+
+  generateNoteURL(note: Note) {
+    let noteId = this.notesService.getId(note);
+    return noteId;
+  }
+
+
 
   filter(query: string) {
     query = query.toLowerCase().trim();
@@ -118,9 +132,6 @@ export class NotesListComponent implements OnInit {
     // so remove the duplicates
     let uniqueResults = this.removeDuplicates(allResults);
     this.filteredNotes = uniqueResults;
-
-    // now sort by relevancy
-    //this.sortByRelevancy(allResults);
   }
 
   removeDuplicates(arr: Array<any>) : Array<any> {
@@ -132,7 +143,7 @@ export class NotesListComponent implements OnInit {
   }
 
   relevantNotes(query: string) : Array<Note> {
-    query = query.toLowerCase().trim();
+    query = query.toLowerCase().trim(); //ensures serch results are not case0-sen
     let relevantNotes = this.notes.filter(note => {
       if (note.title && note.title.toLowerCase().includes(query)) {
         return true;
@@ -142,12 +153,6 @@ export class NotesListComponent implements OnInit {
       }
       return false;
     })
-
     return relevantNotes;
   }
-
-
-
-
-
 }

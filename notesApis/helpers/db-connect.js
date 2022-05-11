@@ -12,3 +12,7 @@ mongoose.connect('mongodb://localhost:27017/NotesApp', { useNewUrlParser: true }
 // To preven deprecation warnings (from MongoDB Native Driver)
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
+
+module.exports ={
+    mongoose
+}

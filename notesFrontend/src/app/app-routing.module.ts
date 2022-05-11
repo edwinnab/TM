@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '',
   component: MainLayoutComponent,
 
-  children: [
+  children: [ //children property allows us to nest routes
     { path: '', component: NotesListComponent },
     { path: 'new', component: NotesDetailsComponent },
     { path: ':id', component: NotesDetailsComponent }

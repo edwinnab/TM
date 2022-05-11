@@ -6,7 +6,7 @@
 // Import a Google Font
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 
-// Set your brand colors
+// Set your brand colors, set the theme/main colors of the app
 $purple: #a59ad7;
 $pink: #fe76c2;
 $blue: #37c7f2;
@@ -25,7 +25,7 @@ $primary: $purple;
 $link: $blue;
 
 // Update some of Bulma's component variables
-$body-background-color: $light;
+$body-background-color: $light; //sets the body background
 $control-border-width: 2px;
 $input-border-color: transparent;
 $input-background-color: #f3f5fa;
